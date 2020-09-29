@@ -43,3 +43,39 @@ for x in np_height:
     print(str(x) + ' inches')
 # %%
 # Loop for 2D Numpy array
+import ast
+file1 = open('baseball_heightin_weightpound.csv')
+baseball = file1.read().splitlines()
+baseball = ast.literal_eval(''.join(baseball))
+print(baseball)
+np_baseball = np.array(baseball)
+for x in np.nditer(np_baseball):
+    print(x)
+# %%
+# Loop over DataFrame
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col=0)
+
+for lab, row in cars.iterrows():
+    print(lab)
+    print(row)
+
+# %%
+# adapt for loop
+
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col=0)
+
+for lab, row in cars.iterrows():
+    print(lab + ': ' + str(row['cars_per_cap']))
+# %%
+# add column in DataFrame
+for lab, row in cars.iterrows():
+    cars.loc[lab,'COUNTRY'] = row['country'].upper()
+
+print(cars)
+# %%
+# add column without For loop by using apply()
+cars['COUNTRY'] = cars['country'].apply(str.upper)
+print(cars)
+# %%
