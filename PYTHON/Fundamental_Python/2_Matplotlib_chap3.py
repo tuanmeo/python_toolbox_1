@@ -35,9 +35,31 @@ else :
 #2. Filtering pandas DataFrames
 # import bric.csv
 import pandas as pd
-brics = pd.read_csv('/home/tuan_nguyen/Documents/Tuan_nguyen/PYTHON/Fundamental_Python/brics.csv', sep = ',')
+brics = pd.read_csv('brics.csv', sep = ',')
 brics_1 = brics[['country']]
 brics_list = brics_1.values.tolist()
 print(brics_list[0])
 
+# %%
+# find all observations in cars where drives_right is True
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col=0)
+dr = cars['drives_right'] == False
+print(cars[dr])
+# %%
+#set all lines to 1 line
+sel = cars[cars['drives_right']]
+print(sel)
+# %%
+# which countries have a high cars per capita > 500
+cpc = cars['cars_per_cap']
+many_cars = cpc > 500
+car_maniac = cars[many_cars]
+print(car_maniac)
+
+# %%
+# countries have cars > 10 and < 80 - use np.logical_and() _or() _not()
+import numpy as np
+medium_car = cars[np.logical_and(cars['cars_per_cap']>10, cars['cars_per_cap']<80)]
+print(medium_car)
 # %%
