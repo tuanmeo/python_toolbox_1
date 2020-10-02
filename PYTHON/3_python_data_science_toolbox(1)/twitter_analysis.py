@@ -40,7 +40,7 @@ def count_entries(df,*args):
         for entry in col:
         #if lang is in lang_count, add 1:
             if entry in cols_count.keys():
-                cols_count[entry] += 1
+                cols_count[entry] = cols_count[entry] + 1
         # else add lang to lang_count, set value to 1:
             else:
                 cols_count[entry] = 1
@@ -50,4 +50,9 @@ result = count_entries(tweet_df, 'lang')
 result1= count_entries(tweet_df,'lang','source')
 print(result)
 print(result1)
+# %%
+# print dictionary as line by line
+# Iterate over key/value pairs in dict and print them
+for key, value in result1.items():
+    print(key, ":", value)
 # %%
