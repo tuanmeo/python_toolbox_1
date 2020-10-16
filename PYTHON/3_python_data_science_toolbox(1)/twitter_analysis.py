@@ -92,10 +92,45 @@ def count_entries(df, col_name = 'lang'):
         # return the cols_count dictionary
         return cols_count
     except TypeError:
-        print('The DataFrame does not have a ' + cols_name+ ' column.')
+        print('The DataFrame does not have a ' + col_name + ' column.')
     
 # call count_entries(): result1
-result1 = count_entries(tweets_df,'lang')
+result1 = count_entries(tweets_df,'lang1')
+print(result1)
+for key, value in result1.items():
+    print(key,":",value)
+
+# %%
+# Add raise ValueError to function count_entries()
+import pandas as pd
+tweets_df = pd.read_csv('tweets.csv')
+
+def count_entries(df, col_name = 'lang'):
+    """Return a dictionary with counts of occurences as value for each key."""
+    # Add Raise ValueError to function
+    if col_name not in df.columns:
+        raise ValueError('The DataFrame does not have a ' + col_name + ' column.')
+
+    # Initialize an empty dictionary: cols_count
+    cols_count = {}
+    
+    # extract column from DataFrame: col
+    col = df[col_name]
+
+    # iterate over the column in dataframe
+    for i in col:
+        # If i is in cols_count, add 1
+        if i in cols_count:
+            cols_count[i] = cols_count[i] + 1
+        # else add i to cols_count, value = 1
+        else:
+            cols_count[i] = 1
+    # return the cols_count dictionary
+    return cols_count
+    
+# call count_entries(): result1
+result1 = count_entries(tweets_df,'lang1')
+print(result1)
 for key, value in result1.items():
     print(key,":",value)
 
