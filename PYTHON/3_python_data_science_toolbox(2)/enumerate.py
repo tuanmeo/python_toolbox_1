@@ -32,3 +32,12 @@ for value1, value2, value3 in mutant_zip:
     print(value1, value2, value3)
 print(type(mutant_zip))
 # %%
+# because no function to 'unzip' for doing the reverse of what 'zip' does.
+# we can use * in zip as example:
+z1 = zip(mutants, powers)
+# unzip the tuples in z1 by unpacking with * and zip():
+result1, result2 = zip(*z1)
+
+print(result1)
+print(result2)
+# %%
