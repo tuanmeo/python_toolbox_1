@@ -92,4 +92,46 @@ with open (filepath,'r') as f:
     data = f.read()
 data = [s.replace("'","") for s in data.split(',')]
 print(type(data))
+
+
+
+# %%
+# import list of lists to pandas dataframe
+import pandas as pd
+data = [['New York Yankees', 'Acevedo Juan', 900000, 'Pitcher'], 
+        ['New York Yankees', 'Anderson Jason', 300000, 'Pitcher'], 
+        ['New York Yankees', 'Clemens Roger', 10100000, 'Pitcher'], 
+        ['New York Yankees', 'Contreras Jose', 5500000, 'Pitcher']]
+
+df = pd.DataFrame.from_records(data)
+print(df)
+# %%
+# Use transposing data
+import pandas as pd
+data = [['New York Yankees', 'Acevedo Juan', 900000, 'Pitcher'], 
+        ['New York Yankees', 'Anderson Jason', 300000, 'Pitcher'], 
+        ['New York Yankees', 'Clemens Roger', 10100000, 'Pitcher'], 
+        ['New York Yankees', 'Contreras Jose', 5500000, 'Pitcher']]
+df = pd.DataFrame(data, columns=["Team", "Player", "Salary", "Role"])
+print(df)
+# %%
+
+import pandas as pd
+data = [['New York Yankees', 'Acevedo Juan', 900000, 'Pitcher'], 
+        ['New York Yankees', 'Anderson Jason', 300000, 'Pitcher'], 
+        ['New York Yankees', 'Clemens Roger', 10100000, 'Pitcher'], 
+        ['New York Yankees', 'Contreras Jose', 5500000, 'Pitcher']]
+
+data = pd.DataFrame(data)
 print(data)
+# %%
+import pandas as pd
+
+data = [['key1', 'key2', 'key3', 'key4'], 
+    ['New York Yankees', 'Anderson Jason', 300000, 'Pitcher'], 
+    ['New York Yankees', 'Clemens Roger', 10100000, 'Pitcher'], 
+    ['New York Yankees', 'Contreras Jose', 5500000, 'Pitcher']]
+
+data = pd.DataFrame(data[1:], columns=data[0])
+print(data)
+# %%

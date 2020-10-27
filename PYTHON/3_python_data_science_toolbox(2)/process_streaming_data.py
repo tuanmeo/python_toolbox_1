@@ -35,7 +35,9 @@ for i,j in counts_dict.items():
     print(i,j)
 # %%
 # Create a function to limit and calculate the data as dataframe
+from numpy.core.records import fromfile
 import pandas as pd
+from pandas import DataFrame
 world_bank = pd.read_csv('world_ind_pop_data.csv')
 
 def count_countries(num,df,col_name = 'CountryName'):
@@ -112,5 +114,87 @@ with open('world_ind_pop_data.csv') as file:
 # %%
 file = open('world_ind_pop_data.csv')
 print(list(file))
+
+# %%
+# Create a dictionary of the counts of how many times each country
+# appears in a column in the dataset, process the entire data.
+
+# Create an empty dictionary: counts_dict
+counts_dict_all = {}
+
+with open('world_ind_pop_data.csv') as file:
+    # Iterate over the genrator from read_large_file():
+    for line in read_large_file(file):
+        
+        row = line.split(',')
+        first_col = row[0]
+
+        if first_col in counts_dict_all.keys():
+           counts_dict_all[first_col] += 1
+        else:
+            counts_dict_all[first_col] = 1
+
+print(counts_dict_all)
+
+# The source file from datacamp gives different result
+# %%
+
+# Using data from datacamp website 
+# import list of lists into dataframe
+import pandas as pd
+
+# import list to list of lists
+import ast
+str = open('world_dev_ind.csv')
+data = str.read().splitlines()
+world_bank_data = ast.literal_eval( ''.join(data))
+print(world_bank_data)
+
+# convert list of lists to Pandas DataFrame
+world_bank_df = pd.DataFrame(world_bank_data, columns=['Contryname', 'CountryCode', 'IndicatorName', 'IndicatorCode', 'Year', 'Value'])
+print(world_bank_df)
+
+# Print the head of columns of dataframe
+print(world_bank_df.columns.values)
+
+# %%
+
+# Run again the function to check result to datacamp
+
+# Create an empty dictionary: counts_dict
+counts_dict = {}
+country_name = world_bank_df['Contryname']
+# Use world_bank_df dataframe source
+for i in country_name:
+    if i in counts_dict.keys():
+        counts_dict[i] += 1
+    else:
+        counts_dict[i] = 1
+
+print(counts_dict)
+# %%
+
+# Export Pandas DataFrame to csv to process the function read_large_file()
+
+# Export dataframe to csv file
+world_bank_df.to_csv(r'C:\DATA\Github\python_toolbox_1\PYTHON\3_python_data_science_toolbox(2)\world_bank_df_datacamp.csv', index = False)
+
+# Initialize an empty dict: counts_dict
+counts_dict = {}
+
+# Open a connection to the file
+with open('world_bank_df_datacamp.csv') as file:
+
+    # Interate over the generator from read_large_file()
+    for line in read_large_file(file):
+        row = line.split(',')
+        first_col = row[0]
+
+        if first_col in counts_dict.keys():
+            counts_dict[first_col] += 1
+        else:
+            counts_dict[first_col] = 1
+
+print(counts_dict)
 
 # %%
