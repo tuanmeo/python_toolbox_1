@@ -27,6 +27,17 @@ class Planet:
 e = Planet('Earth', 12742)
 e.name, e.diameter_km
 
+#%%
+class Dog:
+    def __init__(self):
+        pass
+
+    def bark(self):
+        return "bark bark bark ..."
+
+d = Dog()
+d.bark()
+
 # Use code for 1 line
 # %%
 x = ("rose", "sunflower", "daisy")
@@ -94,6 +105,21 @@ boardgames.insert(0,'Gloomhaven')
 print(boardgames)
 print(type(boardgames))
 
+#%%
+# Add item to the dictionary -> format:paperback
+book = {
+    'title': 'The Giver',
+    'author': 'Lois Lowry',
+    'rating': 4.13
+}
+book['format'] = 'paperback'
+print(book)
+
+#%%
+letters = ['a', 'b', 'c']
+for ii, x in enumerate(letters):
+    print(ii,":",x)
+
 # %%
 for i in 'hello':
     if i == 'l':
@@ -108,4 +134,15 @@ def add_many(*args):
     print(s)
 
 add_many(1,2,3)
+# %%
+# Upper for list ['hello','world'] 
+[s.upper() for s in ['hello','world']]
+
+# %%
+# change value of a list 
+python_pkgs = ['dplyr', 'pandas', 'scipy']
+
+# change value of the first list to 'numpy'
+python_pkgs[0] = 'numpy'
+print(python_pkgs)
 # %%
