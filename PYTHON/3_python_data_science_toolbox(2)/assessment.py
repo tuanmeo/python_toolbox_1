@@ -145,4 +145,27 @@ python_pkgs = ['dplyr', 'pandas', 'scipy']
 # change value of the first list to 'numpy'
 python_pkgs[0] = 'numpy'
 print(python_pkgs)
+
+# %%
+s = "animal, horse"
+print(s.split(", "))
+
+# %%
+# group number in list to set type
+ints = set([1,1,2,2,2,3,4])
+print(ints)
+print(type(ints))
+
+# %%
+# Create dictionary as format a = number
+def make_dict(**kwargs):
+    return kwargs
+
+make_dict(ba = 1, me = 2, con = 3)
+# %%
+list1 = ['ba','me','con']
+list2 = ['tuan', 'giang', 'khoi nguyen']
+
+family = {i:j for i,j in zip(list1,list2)}
+print(family)
 # %%
