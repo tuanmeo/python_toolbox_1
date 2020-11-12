@@ -31,3 +31,30 @@ with open('moby_dick.txt', mode = 'r') as file:
     print(file.readline())
 
 # %%
+# Import file MNIST.csv to numpy array
+import numpy as np
+import ast
+
+file1 = open('digits_MNIST_list.csv')
+digits_MNIST = file1.read()
+digits_MNIST1 = digits_MNIST.replace("'","")
+digits = ast.literal_eval(''.join(digits_MNIST1))
+digits_np = np.array(digits)
+print(digits_np)
+
+# appropriate method for list
+
+
+# %%
+# Import file MNIST.csv to numpy array
+import numpy as np
+import ast
+import csv
+file2 = open('digits_MNIST.csv')
+digits_MNIST_1 = file2.read().splitlines()
+
+print(digits_MNIST_1)
+#digits1 = ast.literal_eval(''.join(digits_MNIST_1))
+digits_np1 = np.array(digits_MNIST_1)
+print(digits_np1)
+# %%
