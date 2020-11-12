@@ -38,6 +38,22 @@ print(type(baseball_1))
 #>>> ast.literal_eval('[(0,0,0), (0,0,1), (1,1,0)]')
 #[(0, 0, 0), (0, 0, 1), (1, 1, 0)]
 
+
+
+#%%
+# For case of [['0','1','2'], ['3','4','5']] change to numpy array 
+# import file from datacamp MNIST digit: 
+# file = 'file name'
+# data = open(file)
+# reader = csv.reader(data) <-- use import csv
+import ast
+import numpy as np
+file = open('digits_mni.csv')
+digits_raw = file.read()
+digits = digits_raw.replace("'","")
+digits1 = ast.literal_eval(''.join(digits))
+digits_np = np.array(digits1)
+print(digits_np)
 #%%
  # import 191, 184, 185, 180, 181, to a list
  import csv
