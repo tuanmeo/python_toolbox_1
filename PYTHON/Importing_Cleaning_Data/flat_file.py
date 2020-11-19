@@ -34,7 +34,7 @@ with open('moby_dick.txt', mode = 'r') as file:
 # Import file MNIST.csv to numpy array
 import numpy as np
 import ast
-
+import matplotlib.pyplot as plt
 file1 = open('digits_MNIST_list.csv')
 digits_MNIST = file1.read()
 digits_MNIST1 = digits_MNIST.replace("'","")
@@ -44,17 +44,12 @@ print(digits_np)
 
 # appropriate method for list
 
+# Select and reshape a row
+im = digits_np[21,1:]
+im_sq = np.reshape(im, (28,28))
 
-# %%
-# Import file MNIST.csv to numpy array
-import numpy as np
-import ast
-import csv
-file2 = open('digits_MNIST.csv')
-digits_MNIST_1 = file2.read().splitlines()
+# Plot reshaped data (matplotlib.pyplot)
+plt.imshow(im_sq, cmap = 'Greys', interpolation='nearest')
+plt.show()
 
-print(digits_MNIST_1)
-#digits1 = ast.literal_eval(''.join(digits_MNIST_1))
-digits_np1 = np.array(digits_MNIST_1)
-print(digits_np1)
 # %%
