@@ -47,6 +47,7 @@ print(digits_np)
 im = digits_np[21, 1:]
 im_sq = np.reshape(im, (28,28))
 
+<<<<<<< HEAD
 # Plot reshaped data (matplotlib.pyplot required)
 plt.imshow(im_sq, cmap='Greys', interpolation='nearest')
 plt.show()
@@ -71,6 +72,16 @@ im_sq = np.reshape(im, (28,28))
 plt.imshow(im_sq, cmap='Greys', interpolation='nearest')
 plt.show()
 
+=======
+# Select and reshape a row
+im = digits_np[21,1:]
+im_sq = np.reshape(im, (28,28))
+
+# Plot reshaped data (matplotlib.pyplot)
+plt.imshow(im_sq, cmap = 'Greys', interpolation='nearest')
+plt.show()
+
+>>>>>>> d8072b4756a7cf3d098fe6baa85ee840785348b9
 # %%
 # For case has header (not need to import), delimiter not ',' could be '\t' for tab
 # 'skiprows': allows to specify how many rows(not indices) wish to skip
