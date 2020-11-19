@@ -42,8 +42,37 @@ digits = ast.literal_eval(''.join(digits_MNIST1))
 digits_np = np.array(digits)
 print(digits_np)
 
-# appropriate method for list
+# appropriate method for convert list to numpy array
+# Select and reshape a row
+im = digits_np[21, 1:]
+im_sq = np.reshape(im, (28,28))
 
+<<<<<<< HEAD
+# Plot reshaped data (matplotlib.pyplot required)
+plt.imshow(im_sq, cmap='Greys', interpolation='nearest')
+plt.show()
+
+# %%
+# Import file digits.csv as datacamp
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Assign filename to variable: file
+file = 'digits.csv'
+
+# Load file as array: digits
+digits = np.loadtxt(file, delimiter=',')
+print(type(digits))
+
+# Select and reshape a row
+im = digits_np[21, 1:]
+im_sq = np.reshape(im, (28,28))
+
+# Plot reshaped data (matplotlib.pyplot required)
+plt.imshow(im_sq, cmap='Greys', interpolation='nearest')
+plt.show()
+
+=======
 # Select and reshape a row
 im = digits_np[21,1:]
 im_sq = np.reshape(im, (28,28))
@@ -52,4 +81,10 @@ im_sq = np.reshape(im, (28,28))
 plt.imshow(im_sq, cmap = 'Greys', interpolation='nearest')
 plt.show()
 
+>>>>>>> d8072b4756a7cf3d098fe6baa85ee840785348b9
 # %%
+# For case has header (not need to import), delimiter not ',' could be '\t' for tab
+# 'skiprows': allows to specify how many rows(not indices) wish to skip
+# 'usecols' takes a list of the indices of the columns wish to keep
+
+# np.loadtxt(): importing is tab-delimited, skip the first row, import only the first and third columns
