@@ -76,4 +76,26 @@ plt.show()
 # 'skiprows': allows to specify how many rows(not indices) wish to skip
 # 'usecols' takes a list of the indices of the columns wish to keep
 
-# np.loadtxt(): importing is tab-delimited, skip the first row, import only the first and third columns
+# np.loadtxt(): importing is tab-delimited, skip the first row, 
+# import only the first and third columns
+
+import numpy as np
+
+# Assign the filename: file
+file = 'digits_header.txt'
+
+# Load the data: data
+data = np.loadtxt(file, delimiter='\t', skiprows=1, usecols=(0,2))
+print(data)
+
+# %%
+# Using file seaslug.txt
+#   has a text header, consisting of strings
+#   is tab-delimited
+
+# Try to import it as-is using np.loadtxt() --> ValueError as "could not convert string to float"
+# 2 solutions:
+#   1. set the data type argument dtype = str(for string)
+#   2. skip the first rows as skiprows
+
+# use 1st method
