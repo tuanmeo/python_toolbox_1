@@ -98,4 +98,68 @@ print(data)
 #   1. set the data type argument dtype = str(for string)
 #   2. skip the first rows as skiprows
 
+#%%
 # use 1st method
+import numpy as np
+import matplotlib.pyplot as plt
+file = 'seaslug.txt'
+
+data = np.loadtxt(file,delimiter='\t', dtype=str)
+
+# Print the first element of data
+print(data[0])
+
+# Plot a scatterplot of data
+plt.scatter(data[:,0], data[:,1])
+plt.xlabel('time (min.)')
+plt.ylabel('percentage of larvae')
+plt.show()
+
+# %%
+# Second method
+import numpy as np
+import matplotlib.pyplot as plt
+file = 'seaslug.txt'
+data_float = np.loadtxt(file, delimiter='\t', dtype=float, skiprows=1)
+
+# Print the 10th element of data_float
+print(data[9])
+
+# Plot a scatterplot of the data
+plt.scatter(data_float[:,0], data_float[:,1])
+plt.xlabel('time (min.)')
+plt.ylabel('percentage of larvae')
+plt.show()
+
+
+# %%
+# Working with mixed datatypes(1)
+# datasets with various datatypes in different columns (string, float, etc)
+#   - np.loadtxt() will freak out
+#   - np.genfromtxt() can handle such structures, pass 'dtype=None' will figure
+#     out what types each column should be
+
+# Using titanic.csv for example:
+#   + delimiter = ,
+#   + argument 'names': True=header, False=no header
+# Because the datatype are of different types, 'data' is an object called 
+# a "structured array"
+# Because numpy array have to contain elements that are all the same type,
+# the structure array solves this by being a 1D array, where each element of
+# the array is a row of the flat file imported.
+
+# import the titanic file
+file = 'titanic.csv'
+
+import numpy as np
+# import data by genfromtxt
+data = np.genfromtxt(file,delimiter=',', names=True, dtype=None)
+
+# print out the first 5 line of data, to get the ith row --> data[i]
+print(data[0:5])
+
+# Print out the column with name --> data['name'], print out the data of column 'Fare', 'Survived'
+# Print out the last 4 values of 'survived' column
+print(data['Survived'][-5:-1])
+print(data['Survived'])
+# %%
