@@ -162,4 +162,23 @@ print(data[0:5])
 # Print out the last 4 values of 'survived' column
 print(data['Survived'][-5:-1])
 print(data['Survived'])
+
+# Print out first 3 entries of data
+print(data[:3])
+
+
+# %%
+# Another function is 'np.recfromcsv()' behaves similarly to 
+# 'np.genfromtxt()', except that its default:
+#   delimiter=','
+#   names=True
+#   dtype=None
+
+# Using the function for 'titanic.csv' file, print the first 3 
+# entries of the data
+
+file = 'titanic.csv'
+data = np.recfromcsv(file)
+
+print(data[:3])
 # %%
