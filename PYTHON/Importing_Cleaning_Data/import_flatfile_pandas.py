@@ -69,7 +69,7 @@ data = pd.read_csv(file, sep='\t', comment='#', na_values='Nothing')
     # 
 
 # Print the head of the DataFrame
-print(data.head()
+print(data.head())
 
 # Plot 'Age' variable in a histogram
 pd.DataFrame.hist(data[['Age']])
@@ -78,6 +78,8 @@ plt.ylabel('count')
 plt.show()
 
 # %%
+# Can change to numpy array but just good for all number than mixed data
 data_array = data.values
-print(data_array['Age'])
+print(data_array[2:5])
+
 # %%
