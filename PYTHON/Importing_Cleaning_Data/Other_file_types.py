@@ -173,3 +173,44 @@ plt.ylabel('Strain')
 plt.show()
 
 # %%
+# IMPORT MATLAB FILE
+# SciPy to read and load
+# scipy.io.loadmat() - read .mat files
+# scipy.io.savemat() - write .mat Files
+
+# - class 'dict'
+#     keys = MATLAB variable names
+#     values = objects assigned to variables
+
+# Using file 'albeck_gene_expression.mat'
+# Print type() of mat
+
+# Import scipy package
+import scipy.io
+import matplotlib.pyplot as plt
+# Load mat file as: mat
+mat = scipy.io.loadmat('albeck_gene_expression.mat')
+
+# Print type of mat
+print(type(mat))
+# %%
+# Print the keys of the MATLAB dictionary
+print(mat.keys()) # key words not begin with __ or end with __ are objectives
+
+# Print the type of the value corresponding to the key 'CYratioCyt'
+print(type(mat['CYratioCyt']))
+
+# Print the shape of the values corresponding to the key 'CYratioCyt'
+print(mat['CYratioCyt'].shape)
+array1 = mat['CYratioCyt'] # (200,137) --> 200 line with 137 values each
+
+# Subset the array and plot it
+data = mat['CYratioCyt'][25, 5:] # from line 25, start at value 5th to all
+fig = plt.figure()
+plt.plot(data)
+plt.xlabel('time (min.)')
+plt.ylabel('normalized fluorescence (measure of expression)')
+plt.show()
+
+# Print the type of the value corresponding to the key 'CYratioCyt'
+# %%
