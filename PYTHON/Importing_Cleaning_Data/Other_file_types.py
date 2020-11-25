@@ -136,6 +136,7 @@ plt.show()
 # import package h5py
 import numpy as np
 import h5py
+import matplotlib.pyplot as plt
 
 # Assign file name: file
 file = 'LIGO_data.hdf5'
@@ -172,8 +173,8 @@ plt.xlabel('GPS time (s)')
 plt.ylabel('Strain')
 plt.show()
 
-# %%
-# IMPORT MATLAB FILE
+ # %%
+ # IMPORT MATLAB FILE
 # SciPy to read and load
 # scipy.io.loadmat() - read .mat files
 # scipy.io.savemat() - write .mat Files
@@ -214,3 +215,4 @@ plt.show()
 
 # Print the type of the value corresponding to the key 'CYratioCyt'
 # %%
+
