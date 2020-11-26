@@ -25,6 +25,7 @@
 # create_engine('sqlite://Chinook.sqlite')
 
 # Import necessary module
+from pandas.core.frame import DataFrame
 from sqlalchemy import create_engine
 
 # Create engine: engine
@@ -121,4 +122,32 @@ df4 = pd.read_sql_query("SELECT * FROM Album", engine)
 print(df4.head())
 # Confirm 2 methods yield the same result
 print(df.equals(df4))
+
+# %%
+# Build DataFrame that contains the rows of the Employee table for which
+# the EmployeeId is >= 6 and ordering by BirthDate
+
+df5 = pd.read_sql_query("SELECT * FROM Employee WHERE EmployeeId >= 6 ORDER BY BirthDate", engine)
+
+# Print head of df5
+print(df5.head())
+print(df5.shape)
+
+
+# %%
+#ADVANCED QUERYING: EXPLOITING TABLE RELATIONSHIPS
+# - Join tables together
+#     - INNER JOIN
+
+# - Extract the Title along with the Name of the Artist. INNER JOIN on the ArtistID
+# - Use context management
+
+# Perform the query and save results to DataFrame: df
+with engine.connect() as con:
+    rs = con.execute("SELECT Title, Name FROM Album INNER JOIN Artist on Album.ArtistID = Artist.ArtistID")
+    df = pd.DataFrame(rs.fetchall())
+    df.columns = rs.keys()
+
+print(df.head())
+
 # %%
