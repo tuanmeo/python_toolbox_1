@@ -72,7 +72,7 @@ rs = con.execute("SELECT * FROM Album")
 df = pd.DataFrame(rs.fetchall())
 df.columns = rs.keys()
 # Print out the head of df
-print(df.head())
+print(df.head(0))
 # %%
 # open engine with context managerment
 # Select columns 'LastName', 'Title' from 'Employee' store as rs1
@@ -150,4 +150,15 @@ with engine.connect() as con:
 
 print(df.head())
 
+# %%
+# Assign variable 'df' the DataFrame of results from the following query:
+# select all records from PlaylistTrack and Track based on TrackId where Milliseconds < 250000
+
+df = pd.read_sql_query("SELECT * FROM PlaylistTrack INNER JOIN Track on PlaylistTrack.TrackId = Track.TrackId WHERE Milliseconds < 250000", engine)
+
+print(df.head())
+# %%
+print(engine.table_names())
+
+print(con.Album.columns.keys())
 # %%
