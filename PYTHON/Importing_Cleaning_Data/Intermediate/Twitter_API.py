@@ -79,3 +79,97 @@
 #     stream = tweepy.Stream(auth, l)
 #     - This line filters Twitter Streams to capture data by keywords:
 #     steam.filter(track=['apples', 'oranges'])
+
+# API Authentication
+
+#%%
+# Import required packages
+import json
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+#%%
+#Load and explore Twitter data offline
+# Read the Twitter data into a list: tweets_data
+# String of path to file: tweets_data_path
+tweets_data_path = 'tweets.txt'
+
+# Initialize empty list to store tweets: tweets_data
+tweets_data = []
+
+# Open connnection to file
+tweets_file = open(tweets_data_path, 'r')
+
+# Read in tweets and store in list: tweets_data
+for line in tweets_file: #load each tweet to a variable line
+    tweets = json.loads(line)
+    tweets_data.append(tweets)
+
+# Close the connection to file
+tweets_file.close()
+
+# Print the keys of the first tweet dict
+print(tweets_data[0].keys())
+# %%
+# Extract Twitter data to DataFrame
+# Build DataFrame of tweet texts and languages
+
+df = pd.DataFrame(tweets_data, columns=('text', 'lang'))
+print (df.head())
+
+
+# %%
+# Analyze to count how many tweets contain the words:
+    # cliton
+    # trump
+    # sanders
+    # cruz
+
+# Define function word_in_text(): tell us whether the first argument
+# (a word) occurs within the 2nd argument (a tweet)
+
+import re
+def word_in_text(word, text):
+    word = word.lower()
+    text = text.lower()
+    match = re.search(word, text)
+
+    if match:
+        return True
+    return False
+
+# Iterate over the rows of the DataFrame and cal how many tweets contain each of our keywords
+# The list of objects for each candidate has been initialized to 0
+
+# Initialize list to store tweet counts
+[clinton, trump, sanders, cruz] = [0, 0, 0, 0]
+
+# Iterate through df, counting the number of tweets in which
+# each candidate is mentioned
+
+for index, row in df.iterrows():
+    clinton += word_in_text('clinton', row['text']) # increases the value of clinton by 1 each time a tweet(text row) mentioning 'Clinton' is encountered.
+    trump += word_in_text('trump', row['text'])
+    sanders += word_in_text('sanders', row['text'])
+    cruz += word_in_text('cruz', row['text'])
+
+#%% 
+# PLOTTING TWITTER DATA 
+# Plot bar chart using statistical data visualization library seaborn
+# import seaborn as sns
+# construct a barplot using sns.barplot, passing it 2 arguments:
+    # - a list of labels and
+    # - a list containing the variables you wish to plot (clinton, trump and so on)
+
+# import packages matplotlib.pyplot and seaborn
+# Set seaborn style
+sns.set(color_codes=True)
+
+# Create a list of labels: cd
+cd = ['clinton', 'trump', 'sanders', 'cruz']
+
+# Plot the bar chart
+ax = sns.barplot(cd, [clinton, trump, sanders, cruz])
+ax.set(ylabel='count')
+plt.show()
+# %%
